@@ -1,0 +1,1606 @@
+.wordpress-form-wizard-input-container label, .wordpress-form-wizard-input-container legend {
+    display: block;
+    font-size: .9em;
+    font-weight: 700;
+    margin-bottom: 0.4em;
+}
+
+.wordpress-form-wizard-input-container input[type=date], 
+.wordpress-form-wizard-input-container input[type=email], 
+.wordpress-form-wizard-input-container input[type=number], 
+.wordpress-form-wizard-input-container input[type=password], 
+.wordpress-form-wizard-input-container input[type=search], 
+.wordpress-form-wizard-input-container input[type=tel], 
+.wordpress-form-wizard-input-container input[type=text], 
+.wordpress-form-wizard-input-container input[type=url], 
+.wordpress-form-wizard-input-container select, 
+.wordpress-form-wizard-input-container textarea {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #333;
+    font-size: .97em;
+    height: 2.507em;
+    max-width: 100%;
+    padding: 0 0.75em;
+    transition: color .3s,border .3s,background .3s,opacity .3s;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.wordpress-form-wizard-posts-post-attr {
+    display: list-item;
+    font-size: 90%;
+    margin-left: 20px;
+}
+
+.wordpress-form-wizard-posts-post-label {
+    display: inline-block;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 11px;
+}
+
+.wordpress-form-wizard-choice-style-image-left .wordpress-form-wizard-step-choice-title-container {
+  padding-left: 30px;
+}
+
+.wordpress-form-wizard-step-final-price {
+  padding:  20px 40px;
+  font-size: 46px;
+  display: inline-block;
+  margin-bottom: 30px;
+  border-radius: 5px;
+}
+
+.wordpress-form-wizard {
+  color: #000;
+}
+
+.wordpress-form-wizard-loading-container {
+  text-align: center;
+}
+
+.wordpress-form-wizard-loading-icon {
+  font-size: 36px;
+}
+
+.wordpress-form-wizard-posts-post-image-container {
+  border-bottom: 1px solid #eaeaea;
+}
+
+.wordpress-form-wizard-submit-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.wordpress-form-wizard-loading-text {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.wordpress-form-wizard-posts-post-container {
+  border-radius: 5px;
+  border:  1px solid #eaeaea;
+}
+
+.wordpress-form-wizard-posts-post-info-container {
+  padding:  20px 15px;
+}
+
+.wordpress-form-wizard-posts-post-ti {
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.wordpress-form-wizard-posts-post-image-container {
+  text-align: center;
+}
+
+.wordpress-form-wizard-posts-post-image-container img {
+    display: inline-block;
+    height: auto;
+    max-width: 100%;
+}
+
+.wordpress-form-wizard-step-title {
+  font-size: 2rem;
+  line-height: 2.5rem;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.wordpress-form-wizard-step-choice-img {
+  margin-bottom: 10px;
+}
+
+.wordpress-form-wizard-step-choice-title {
+  font-size: 1.1rem;
+  line-height: 1.6rem;
+  font-weight: bold;
+}
+
+.wordpress-form-wizard-steps-container {
+  padding:  40px 50px;
+  border:  1px solid #eaeaea;
+}
+
+.wordpress-form-wizard-progress-bar-container {
+  height: 100%;
+}
+
+.wordpress-form-wizard-progress-bar {
+
+    display: block;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    height: 10px;
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
+
+.wordpress-form-wizard-top-bar {
+ border-top:  1px solid #eaeaea;
+ border-right:  1px solid #eaeaea;
+ border-left:  1px solid #eaeaea; 
+ font-size: 0.9rem;
+}
+
+.wordpress-form-wizard-price-container {
+  border-left:  1px solid #eaeaea;
+  text-align: center;
+}
+
+.wordpress-form-wizard-step-choice-container {
+    transition: transform 0.5s ease 0s;
+}
+
+.wordpress-form-wizard-step-choice-container label {
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+}
+
+.wordpress-form-wizard-step-choice-container, .wordpress-form-wizard-image-checkbox, 
+.wordpress-form-wizard-image-checkbox input[type=checkbox]+label, .wordpress-form-wizard-image-checkbox input[type=radio]+label{
+    height:  100%;
+}
+
+.wordpress-form-wizard-error {
+    border: 1px solid red !important;
+}
+
+.wordpress-form-wizard-step-choice-container:hover{
+      transform: translateY(-10px);
+}
+
+.wordpress-form-wizard-step-choice-description {
+  color: #666;
+  font-weight: normal;
+}
+
+.wordpress-form-wizard-navigation {
+  padding:  20px 50px;
+  border:  1px solid #eaeaea;
+}
+
+.wordpress-form-wizard-btn {
+  margin:  0;
+}
+
+.wordpress-form-wizard-navigation .wordpress-form-wizard-next-step,
+.wordpress-form-wizard-navigation .wordpress-form-wizard-restart,
+.wordpress-form-wizard-navigation .wordpress-form-wizard-skip-step {
+  float:  right;
+}
+
+.wordpress-form-wizard-tooltip {
+  display: inline;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+[wordpress-form-wizard-tooltip] {
+  position: relative; /* opinion 1 */
+}
+
+/* Applies to all tooltips */
+[wordpress-form-wizard-tooltip]::before,
+[wordpress-form-wizard-tooltip]::after {
+  text-transform: none; /* opinion 2 */
+  font-size: .9em; /* opinion 3 */
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  position: absolute;
+  display: none;
+  opacity: 0;
+}
+[wordpress-form-wizard-tooltip]::before {
+  content: '';
+  border: 5px solid transparent; /* opinion 4 */
+  z-index: 1001; /* absurdity 1 */
+}
+[wordpress-form-wizard-tooltip]::after {
+  content: attr(wordpress-form-wizard-tooltip); /* magic! */
+  
+  /* most of the rest of this is opinion */
+  text-align: center;
+  
+  /* 
+    Let the content set the size of the tooltips 
+    but this will also keep them from being obnoxious
+    */
+  min-width: 3em;
+  max-width: 30em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 1ch 1.5ch;
+  border-radius: .3ch;
+  box-shadow: 0 1em 2em -.5em rgba(0, 0, 0, 0.35);
+  background: #333;
+  color: #fff;
+  z-index: 1000; /* absurdity 2 */
+}
+
+/* Make the tooltips respond to hover */
+[wordpress-form-wizard-tooltip]:hover::before,
+[wordpress-form-wizard-tooltip]:hover::after {
+  display: block;
+}
+
+/* don't show empty tooltips */
+[wordpress-form-wizard-tooltip='']::before,
+[wordpress-form-wizard-tooltip='']::after {
+  display: none !important;
+}
+
+/* FLOW: UP */
+[wordpress-form-wizard-tooltip]:not([flow])::before,
+[wordpress-form-wizard-tooltip][flow^="up"]::before {
+  bottom: 100%;
+  border-bottom-width: 0;
+  border-top-color: #333;
+}
+[wordpress-form-wizard-tooltip]:not([flow])::after,
+[wordpress-form-wizard-tooltip][flow^="up"]::after {
+  bottom: calc(100% + 5px);
+}
+[wordpress-form-wizard-tooltip]:not([flow])::before,
+[wordpress-form-wizard-tooltip]:not([flow])::after,
+[wordpress-form-wizard-tooltip][flow^="up"]::before,
+[wordpress-form-wizard-tooltip][flow^="up"]::after {
+  left: 50%;
+  transform: translate(-50%, -.5em);
+}
+
+/* FLOW: DOWN */
+[wordpress-form-wizard-tooltip][flow^="down"]::before {
+  top: 100%;
+  border-top-width: 0;
+  border-bottom-color: #333;
+}
+[wordpress-form-wizard-tooltip][flow^="down"]::after {
+  top: calc(100% + 5px);
+}
+[wordpress-form-wizard-tooltip][flow^="down"]::before,
+[wordpress-form-wizard-tooltip][flow^="down"]::after {
+  left: 50%;
+  transform: translate(-50%, .5em);
+}
+
+/* FLOW: LEFT */
+[wordpress-form-wizard-tooltip][flow^="left"]::before {
+  top: 50%;
+  border-right-width: 0;
+  border-left-color: #333;
+  left: calc(0em - 5px);
+  transform: translate(-.5em, -50%);
+}
+[wordpress-form-wizard-tooltip][flow^="left"]::after {
+  top: 50%;
+  right: calc(100% + 5px);
+  transform: translate(-.5em, -50%);
+}
+
+/* FLOW: RIGHT */
+[wordpress-form-wizard-tooltip][flow^="right"]::before {
+  top: 50%;
+  border-left-width: 0;
+  border-right-color: #333;
+  right: calc(0em - 5px);
+  transform: translate(.5em, -50%);
+}
+[wordpress-form-wizard-tooltip][flow^="right"]::after {
+  top: 50%;
+  left: calc(100% + 5px);
+  transform: translate(.5em, -50%);
+}
+
+/* KEYFRAMES */
+@keyframes tooltips-vert {
+  to {
+    opacity: .9;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes tooltips-horz {
+  to {
+    opacity: .9;
+    transform: translate(0, -50%);
+  }
+}
+
+/* FX All The Things */ 
+[wordpress-form-wizard-tooltip]:not([flow]):hover::before,
+[wordpress-form-wizard-tooltip]:not([flow]):hover::after,
+[wordpress-form-wizard-tooltip][flow^="up"]:hover::before,
+[wordpress-form-wizard-tooltip][flow^="up"]:hover::after,
+[wordpress-form-wizard-tooltip][flow^="down"]:hover::before,
+[wordpress-form-wizard-tooltip][flow^="down"]:hover::after {
+  animation: tooltips-vert 300ms ease-out forwards;
+}
+
+[wordpress-form-wizard-tooltip][flow^="left"]:hover::before,
+[wordpress-form-wizard-tooltip][flow^="left"]:hover::after,
+[wordpress-form-wizard-tooltip][flow^="right"]:hover::before,
+[wordpress-form-wizard-tooltip][flow^="right"]:hover::after {
+  animation: tooltips-horz 300ms ease-out forwards;
+}
+
+.wordpress-form-wizard-step-choices-container {
+  padding-top: 20px;
+}
+
+.wordpress-form-wizard .wordpress-form-wizard-step-choices-container input[type="radio"],
+.wordpress-form-wizard .wordpress-form-wizard-step-choices-container input[type="checkbox"] {
+  display: none;
+}
+
+.wordpress-form-wizard-image-checkbox label {
+  padding: 0;
+  display: block;
+  position: relative;
+  margin: 0;
+  cursor: pointer;
+}
+
+
+.wordpress-form-wizard-image-checkbox .bxs-check-circle,
+.wordpress-form-wizard-image-checkbox .bxs-check-square,
+.wordpress-form-wizard-image-checkbox .bxs-circle,
+.wordpress-form-wizard-image-checkbox .bxs-square {
+    background-color: white;
+    font-size: 25px;
+    border-radius: 0 0 0 3px;
+    position: absolute;
+    color: #eaeaea;
+    transition-duration: 0.4s;
+    padding: 2px;
+    top: 20px;
+    right: 20px;
+}
+
+.wordpress-form-wizard-image-checkbox .bxs-check-circle,
+.wordpress-form-wizard-image-checkbox .bxs-check-square {
+  transform: scale(0);
+}
+
+.wordpress-form-wizard-image-checkbox input[type=checkbox]+label, .wordpress-form-wizard-image-checkbox input[type=radio]+label {
+  display: block;
+  padding: 20px;
+}
+
+.wordpress-form-wizard-image-checkbox :checked + label .bxs-check-circle,
+.wordpress-form-wizard-image-checkbox :checked + label .bxs-check-square {
+  transform: scale(1);
+}
+
+.wordpress-form-wizard-image-checkbox :checked + label .bxs-circle,
+.wordpress-form-wizard-image-checkbox :checked + label .bxs-square {
+  transform: scale(0);
+}
+
+.wordpress-form-wizard-rangeslider-info-container {
+  margin-top:  10px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.wordpress-form-wizard-rangeslider-container {
+  width:  100%;
+}
+
+.wordpress-form-wizard-steps-container {
+  max-height: 75vh;
+  overflow: auto;
+}
+
+.wordpress-form-wizard-navigation {
+  max-height: 10vh;
+  min-height: 80px;
+}
+
+.wordpress-form-wizard-step-choice-img {
+  margin-bottom: 0 !important;
+}
+
+.wordpress-form-wizard-top-bar {
+  max-height: 10vh;
+}
+
+.wordpress-form-wizard-input-container input {
+    margin-bottom: 0;
+}
+
+@media(min-width: 768px) {
+  .wordpress-form-wizard-no-padding {
+    padding: 0 !important;
+  }
+}
+
+@media(min-width: 768px) and (max-width:  1280px) {
+  .wordpress-form-wizard-steps-container {
+    padding:  15px 20px;
+  }
+
+}
+
+
+@media(max-width:  768px) {
+
+  .wordpress-form-wizard-step-final-price {
+    font-size: 28px;
+  }
+
+  .wordpress-form-wizard-steps-container {
+    padding:  30px 15px;
+  }
+  .wordpress-form-wizard-skip-step {
+    display: none !important;
+  }
+
+  .wordpress-form-wizard-image-checkbox input[type=checkbox]+label, .wordpress-form-wizard-image-checkbox input[type=radio]+label {
+    padding:  5px;
+  }
+
+  .wordpress-form-wizard-step-choice-title {
+    padding-right: 45px;
+  }
+
+  .wordpress-form-wizard-navigation {
+    padding:  20px 15px;
+  }
+
+  .wordpress-form-wizard-steps-container {
+    max-height: 70vh;
+    height: 70vh;
+  }
+
+  .wordpress-form-wizard-image-checkbox .bxs-check-circle,
+  .wordpress-form-wizard-image-checkbox .bxs-check-square,
+  .wordpress-form-wizard-image-checkbox .bxs-circle,
+  .wordpress-form-wizard-image-checkbox .bxs-square {
+      top: 10px;
+      right: 10px;
+  }
+
+  .wordpress-form-wizard-step-choice-container:hover{
+        transform: translateY(0);
+  }
+
+  .wordpress-form-wizard-step-title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+}
+
+/**************************************************
+ * Grid
+ *************************************************/
+
+.wordpress-form-wizard-align-right {
+  margin-left:  auto;
+}
+
+.wordpress-form-wizard-align-left {
+  margin-right:  auto;
+}
+
+.wordpress-form-wizard-row {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.wordpress-form-wizard-row.wordpress-form-wizard-reverse {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+.wordpress-form-wizard-col.wordpress-form-wizard-reverse {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+}
+
+.wordpress-form-wizard-col-xs,
+.wordpress-form-wizard-col-xs-1,
+.wordpress-form-wizard-col-xs-2,
+.wordpress-form-wizard-col-xs-3,
+.wordpress-form-wizard-col-xs-4,
+.wordpress-form-wizard-col-xs-5,
+.wordpress-form-wizard-col-xs-6,
+.wordpress-form-wizard-col-xs-7,
+.wordpress-form-wizard-col-xs-8,
+.wordpress-form-wizard-col-xs-9,
+.wordpress-form-wizard-col-xs-10,
+.wordpress-form-wizard-col-xs-11,
+.wordpress-form-wizard-col-xs-12,
+.wordpress-form-wizard-col-xs-offset-0,
+.wordpress-form-wizard-col-xs-offset-1,
+.wordpress-form-wizard-col-xs-offset-2,
+.wordpress-form-wizard-col-xs-offset-3,
+.wordpress-form-wizard-col-xs-offset-4,
+.wordpress-form-wizard-col-xs-offset-5,
+.wordpress-form-wizard-col-xs-offset-6,
+.wordpress-form-wizard-col-xs-offset-7,
+.wordpress-form-wizard-col-xs-offset-8,
+.wordpress-form-wizard-col-xs-offset-9,
+.wordpress-form-wizard-col-xs-offset-10,
+.wordpress-form-wizard-col-xs-offset-11,
+.wordpress-form-wizard-col-xs-offset-12 {
+  box-sizing: border-box;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.wordpress-form-wizard-col-xs {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  max-width: 100%;
+}
+
+.wordpress-form-wizard-col-xs-1 {
+  -ms-flex-preferred-size: 8.33333333%;
+  flex-basis: 8.33333333%;
+  max-width: 8.33333333%;
+}
+
+.wordpress-form-wizard-col-xs-2 {
+  -ms-flex-preferred-size: 16.66666667%;
+  flex-basis: 16.66666667%;
+  max-width: 16.66666667%;
+}
+
+.wordpress-form-wizard-col-xs-3 {
+  -ms-flex-preferred-size: 25%;
+  flex-basis: 25%;
+  max-width: 25%;
+}
+
+.wordpress-form-wizard-col-xs-4 {
+  -ms-flex-preferred-size: 33.33333333%;
+  flex-basis: 33.33333333%;
+  max-width: 33.33333333%;
+}
+
+.wordpress-form-wizard-col-xs-5 {
+  -ms-flex-preferred-size: 41.66666667%;
+  flex-basis: 41.66666667%;
+  max-width: 41.66666667%;
+}
+
+.wordpress-form-wizard-col-xs-6 {
+  -ms-flex-preferred-size: 50%;
+  flex-basis: 50%;
+  max-width: 50%;
+}
+
+.wordpress-form-wizard-col-xs-7 {
+  -ms-flex-preferred-size: 58.33333333%;
+  flex-basis: 58.33333333%;
+  max-width: 58.33333333%;
+}
+
+.wordpress-form-wizard-col-xs-8 {
+  -ms-flex-preferred-size: 66.66666667%;
+  flex-basis: 66.66666667%;
+  max-width: 66.66666667%;
+}
+
+.wordpress-form-wizard-col-xs-9 {
+  -ms-flex-preferred-size: 75%;
+  flex-basis: 75%;
+  max-width: 75%;
+}
+
+.wordpress-form-wizard-col-xs-10 {
+  -ms-flex-preferred-size: 83.33333333%;
+  flex-basis: 83.33333333%;
+  max-width: 83.33333333%;
+}
+
+.wordpress-form-wizard-col-xs-11 {
+  -ms-flex-preferred-size: 91.66666667%;
+  flex-basis: 91.66666667%;
+  max-width: 91.66666667%;
+}
+
+.wordpress-form-wizard-col-xs-12 {
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  max-width: 100%;
+}
+
+.wordpress-form-wizard-col-xs-offset-0 {
+  margin-left: 0;
+}
+
+.wordpress-form-wizard-col-xs-offset-1 {
+  margin-left: 8.33333333%;
+}
+
+.wordpress-form-wizard-col-xs-offset-2 {
+  margin-left: 16.66666667%;
+}
+
+.wordpress-form-wizard-col-xs-offset-3 {
+  margin-left: 25%;
+}
+
+.wordpress-form-wizard-col-xs-offset-4 {
+  margin-left: 33.33333333%;
+}
+
+.wordpress-form-wizard-col-xs-offset-5 {
+  margin-left: 41.66666667%;
+}
+
+.wordpress-form-wizard-col-xs-offset-6 {
+  margin-left: 50%;
+}
+
+.wordpress-form-wizard-col-xs-offset-7 {
+  margin-left: 58.33333333%;
+}
+
+.wordpress-form-wizard-col-xs-offset-8 {
+  margin-left: 66.66666667%;
+}
+
+.wordpress-form-wizard-col-xs-offset-9 {
+  margin-left: 75%;
+}
+
+.wordpress-form-wizard-col-xs-offset-10 {
+  margin-left: 83.33333333%;
+}
+
+.wordpress-form-wizard-col-xs-offset-11 {
+  margin-left: 91.66666667%;
+}
+
+.wordpress-form-wizard-start-xs {
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  text-align: start;
+}
+
+.wordpress-form-wizard-center-xs {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.wordpress-form-wizard-end-xs {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  text-align: end;
+}
+
+.wordpress-form-wizard-top-xs {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.wordpress-form-wizard-middle-xs {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.wordpress-form-wizard-bottom-xs {
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+}
+
+.wordpress-form-wizard-around-xs {
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+
+.wordpress-form-wizard-between-xs {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.wordpress-form-wizard-first-xs {
+  -webkit-box-ordinal-group: 0;
+  -ms-flex-order: -1;
+  order: -1;
+}
+
+.wordpress-form-wizard-last-xs {
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+  order: 1;
+}
+
+@media only screen and (min-width: 48em) {
+  .wordpress-form-wizard-container {
+    width: 49rem;
+  }
+
+  .wordpress-form-wizard-col-sm,
+  .wordpress-form-wizard-col-sm-1,
+  .wordpress-form-wizard-col-sm-2,
+  .wordpress-form-wizard-col-sm-3,
+  .wordpress-form-wizard-col-sm-4,
+  .wordpress-form-wizard-col-sm-5,
+  .wordpress-form-wizard-col-sm-6,
+  .wordpress-form-wizard-col-sm-7,
+  .wordpress-form-wizard-col-sm-8,
+  .wordpress-form-wizard-col-sm-9,
+  .wordpress-form-wizard-col-sm-10,
+  .wordpress-form-wizard-col-sm-11,
+  .wordpress-form-wizard-col-sm-12,
+  .wordpress-form-wizard-col-sm-offset-0,
+  .wordpress-form-wizard-col-sm-offset-1,
+  .wordpress-form-wizard-col-sm-offset-2,
+  .wordpress-form-wizard-col-sm-offset-3,
+  .wordpress-form-wizard-col-sm-offset-4,
+  .wordpress-form-wizard-col-sm-offset-5,
+  .wordpress-form-wizard-col-sm-offset-6,
+  .wordpress-form-wizard-col-sm-offset-7,
+  .wordpress-form-wizard-col-sm-offset-8,
+  .wordpress-form-wizard-col-sm-offset-9,
+  .wordpress-form-wizard-col-sm-offset-10,
+  .wordpress-form-wizard-col-sm-offset-11,
+  .wordpress-form-wizard-col-sm-offset-12 {
+    box-sizing: border-box;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .wordpress-form-wizard-col-sm {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    max-width: 100%;
+  }
+
+  .wordpress-form-wizard-col-sm-1 {
+    -ms-flex-preferred-size: 8.33333333%;
+    flex-basis: 8.33333333%;
+    max-width: 8.33333333%;
+  }
+
+  .wordpress-form-wizard-col-sm-2 {
+    -ms-flex-preferred-size: 16.66666667%;
+    flex-basis: 16.66666667%;
+    max-width: 16.66666667%;
+  }
+
+  .wordpress-form-wizard-col-sm-3 {
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
+    max-width: 25%;
+  }
+
+  .wordpress-form-wizard-col-sm-4 {
+    -ms-flex-preferred-size: 33.33333333%;
+    flex-basis: 33.33333333%;
+    max-width: 33.33333333%;
+  }
+
+  .wordpress-form-wizard-col-sm-5 {
+    -ms-flex-preferred-size: 41.66666667%;
+    flex-basis: 41.66666667%;
+    max-width: 41.66666667%;
+  }
+
+  .wordpress-form-wizard-col-sm-6 {
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+
+  .wordpress-form-wizard-col-sm-7 {
+    -ms-flex-preferred-size: 58.33333333%;
+    flex-basis: 58.33333333%;
+    max-width: 58.33333333%;
+  }
+
+  .wordpress-form-wizard-col-sm-8 {
+    -ms-flex-preferred-size: 66.66666667%;
+    flex-basis: 66.66666667%;
+    max-width: 66.66666667%;
+  }
+
+  .wordpress-form-wizard-col-sm-9 {
+    -ms-flex-preferred-size: 75%;
+    flex-basis: 75%;
+    max-width: 75%;
+  }
+
+  .wordpress-form-wizard-col-sm-10 {
+    -ms-flex-preferred-size: 83.33333333%;
+    flex-basis: 83.33333333%;
+    max-width: 83.33333333%;
+  }
+
+  .wordpress-form-wizard-col-sm-11 {
+    -ms-flex-preferred-size: 91.66666667%;
+    flex-basis: 91.66666667%;
+    max-width: 91.66666667%;
+  }
+
+  .wordpress-form-wizard-col-sm-12 {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+
+  .wordpress-form-wizard-col-sm-offset-0 {
+    margin-left: 0;
+  }
+
+  .wordpress-form-wizard-col-sm-offset-1 {
+    margin-left: 8.33333333%;
+  }
+
+  .wordpress-form-wizard-col-sm-offset-2 {
+    margin-left: 16.66666667%;
+  }
+
+  .wordpress-form-wizard-col-sm-offset-3 {
+    margin-left: 25%;
+  }
+
+  .wordpress-form-wizard-col-sm-offset-4 {
+    margin-left: 33.33333333%;
+  }
+
+  .wordpress-form-wizard-col-sm-offset-5 {
+    margin-left: 41.66666667%;
+  }
+
+  .wordpress-form-wizard-col-sm-offset-6 {
+    margin-left: 50%;
+  }
+
+  .wordpress-form-wizard-col-sm-offset-7 {
+    margin-left: 58.33333333%;
+  }
+
+  .wordpress-form-wizard-col-sm-offset-8 {
+    margin-left: 66.66666667%;
+  }
+
+  .wordpress-form-wizard-col-sm-offset-9 {
+    margin-left: 75%;
+  }
+
+  .wordpress-form-wizard-col-sm-offset-10 {
+    margin-left: 83.33333333%;
+  }
+
+  .wordpress-form-wizard-col-sm-offset-11 {
+    margin-left: 91.66666667%;
+  }
+
+  .wordpress-form-wizard-start-sm {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    text-align: start;
+  }
+
+  .wordpress-form-wizard-center-sm {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .wordpress-form-wizard-end-sm {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    text-align: end;
+  }
+
+  .wordpress-form-wizard-top-sm {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+  }
+
+  .wordpress-form-wizard-middle-sm {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .wordpress-form-wizard-bottom-sm {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+  }
+
+  .wordpress-form-wizard-around-sm {
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+  }
+
+  .wordpress-form-wizard-between-sm {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+
+  .wordpress-form-wizard-first-sm {
+    -webkit-box-ordinal-group: 0;
+    -ms-flex-order: -1;
+    order: -1;
+  }
+
+  .wordpress-form-wizard-last-sm {
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1;
+  }
+}
+
+@media only screen and (min-width: 64em) {
+  .wordpress-form-wizard-container {
+    width: 65rem;
+  }
+
+  .wordpress-form-wizard-col-md,
+  .wordpress-form-wizard-col-md-1,
+  .wordpress-form-wizard-col-md-2,
+  .wordpress-form-wizard-col-md-3,
+  .wordpress-form-wizard-col-md-4,
+  .wordpress-form-wizard-col-md-5,
+  .wordpress-form-wizard-col-md-6,
+  .wordpress-form-wizard-col-md-7,
+  .wordpress-form-wizard-col-md-8,
+  .wordpress-form-wizard-col-md-9,
+  .wordpress-form-wizard-col-md-10,
+  .wordpress-form-wizard-col-md-11,
+  .wordpress-form-wizard-col-md-12,
+  .wordpress-form-wizard-col-md-offset-0,
+  .wordpress-form-wizard-col-md-offset-1,
+  .wordpress-form-wizard-col-md-offset-2,
+  .wordpress-form-wizard-col-md-offset-3,
+  .wordpress-form-wizard-col-md-offset-4,
+  .wordpress-form-wizard-col-md-offset-5,
+  .wordpress-form-wizard-col-md-offset-6,
+  .wordpress-form-wizard-col-md-offset-7,
+  .wordpress-form-wizard-col-md-offset-8,
+  .wordpress-form-wizard-col-md-offset-9,
+  .wordpress-form-wizard-col-md-offset-10,
+  .wordpress-form-wizard-col-md-offset-11,
+  .wordpress-form-wizard-col-md-offset-12 {
+    box-sizing: border-box;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .wordpress-form-wizard-col-md {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    max-width: 100%;
+  }
+
+  .wordpress-form-wizard-col-md-1 {
+    -ms-flex-preferred-size: 8.33333333%;
+    flex-basis: 8.33333333%;
+    max-width: 8.33333333%;
+  }
+
+  .wordpress-form-wizard-col-md-2 {
+    -ms-flex-preferred-size: 16.66666667%;
+    flex-basis: 16.66666667%;
+    max-width: 16.66666667%;
+  }
+
+  .wordpress-form-wizard-col-md-3 {
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
+    max-width: 25%;
+  }
+
+  .wordpress-form-wizard-col-md-4 {
+    -ms-flex-preferred-size: 33.33333333%;
+    flex-basis: 33.33333333%;
+    max-width: 33.33333333%;
+  }
+
+  .wordpress-form-wizard-col-md-5 {
+    -ms-flex-preferred-size: 41.66666667%;
+    flex-basis: 41.66666667%;
+    max-width: 41.66666667%;
+  }
+
+  .wordpress-form-wizard-col-md-6 {
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+
+  .wordpress-form-wizard-col-md-7 {
+    -ms-flex-preferred-size: 58.33333333%;
+    flex-basis: 58.33333333%;
+    max-width: 58.33333333%;
+  }
+
+  .wordpress-form-wizard-col-md-8 {
+    -ms-flex-preferred-size: 66.66666667%;
+    flex-basis: 66.66666667%;
+    max-width: 66.66666667%;
+  }
+
+  .wordpress-form-wizard-col-md-9 {
+    -ms-flex-preferred-size: 75%;
+    flex-basis: 75%;
+    max-width: 75%;
+  }
+
+  .wordpress-form-wizard-col-md-10 {
+    -ms-flex-preferred-size: 83.33333333%;
+    flex-basis: 83.33333333%;
+    max-width: 83.33333333%;
+  }
+
+  .wordpress-form-wizard-col-md-11 {
+    -ms-flex-preferred-size: 91.66666667%;
+    flex-basis: 91.66666667%;
+    max-width: 91.66666667%;
+  }
+
+  .wordpress-form-wizard-col-md-12 {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+
+  .wordpress-form-wizard-col-md-offset-0 {
+    margin-left: 0;
+  }
+
+  .wordpress-form-wizard-col-md-offset-1 {
+    margin-left: 8.33333333%;
+  }
+
+  .wordpress-form-wizard-col-md-offset-2 {
+    margin-left: 16.66666667%;
+  }
+
+  .wordpress-form-wizard-col-md-offset-3 {
+    margin-left: 25%;
+  }
+
+  .wordpress-form-wizard-col-md-offset-4 {
+    margin-left: 33.33333333%;
+  }
+
+  .wordpress-form-wizard-col-md-offset-5 {
+    margin-left: 41.66666667%;
+  }
+
+  .wordpress-form-wizard-col-md-offset-6 {
+    margin-left: 50%;
+  }
+
+  .wordpress-form-wizard-col-md-offset-7 {
+    margin-left: 58.33333333%;
+  }
+
+  .wordpress-form-wizard-col-md-offset-8 {
+    margin-left: 66.66666667%;
+  }
+
+  .wordpress-form-wizard-col-md-offset-9 {
+    margin-left: 75%;
+  }
+
+  .wordpress-form-wizard-col-md-offset-10 {
+    margin-left: 83.33333333%;
+  }
+
+  .wordpress-form-wizard-col-md-offset-11 {
+    margin-left: 91.66666667%;
+  }
+
+  .wordpress-form-wizard-start-md {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    text-align: start;
+  }
+
+  .wordpress-form-wizard-center-md {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .wordpress-form-wizard-end-md {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    text-align: end;
+  }
+
+  .wordpress-form-wizard-top-md {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+  }
+
+  .wordpress-form-wizard-middle-md {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .wordpress-form-wizard-bottom-md {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+  }
+
+  .wordpress-form-wizard-around-md {
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+  }
+
+  .wordpress-form-wizard-between-md {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+
+  .wordpress-form-wizard-first-md {
+    -webkit-box-ordinal-group: 0;
+    -ms-flex-order: -1;
+    order: -1;
+  }
+
+  .wordpress-form-wizard-last-md {
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1;
+  }
+}
+
+@media only screen and (min-width: 75em) {
+  .wordpress-form-wizard-container {
+    width: 76rem;
+  }
+
+  .wordpress-form-wizard-col-lg,
+  .wordpress-form-wizard-col-lg-1,
+  .wordpress-form-wizard-col-lg-2,
+  .wordpress-form-wizard-col-lg-3,
+  .wordpress-form-wizard-col-lg-4,
+  .wordpress-form-wizard-col-lg-5,
+  .wordpress-form-wizard-col-lg-6,
+  .wordpress-form-wizard-col-lg-7,
+  .wordpress-form-wizard-col-lg-8,
+  .wordpress-form-wizard-col-lg-9,
+  .wordpress-form-wizard-col-lg-10,
+  .wordpress-form-wizard-col-lg-11,
+  .wordpress-form-wizard-col-lg-12,
+  .wordpress-form-wizard-col-lg-offset-0,
+  .wordpress-form-wizard-col-lg-offset-1,
+  .wordpress-form-wizard-col-lg-offset-2,
+  .wordpress-form-wizard-col-lg-offset-3,
+  .wordpress-form-wizard-col-lg-offset-4,
+  .wordpress-form-wizard-col-lg-offset-5,
+  .wordpress-form-wizard-col-lg-offset-6,
+  .wordpress-form-wizard-col-lg-offset-7,
+  .wordpress-form-wizard-col-lg-offset-8,
+  .wordpress-form-wizard-col-lg-offset-9,
+  .wordpress-form-wizard-col-lg-offset-10,
+  .wordpress-form-wizard-col-lg-offset-11,
+  .wordpress-form-wizard-col-lg-offset-12 {
+    box-sizing: border-box;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .wordpress-form-wizard-col-lg {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    max-width: 100%;
+  }
+
+  .wordpress-form-wizard-col-lg-1 {
+    -ms-flex-preferred-size: 8.33333333%;
+    flex-basis: 8.33333333%;
+    max-width: 8.33333333%;
+  }
+
+  .wordpress-form-wizard-col-lg-2 {
+    -ms-flex-preferred-size: 16.66666667%;
+    flex-basis: 16.66666667%;
+    max-width: 16.66666667%;
+  }
+
+  .wordpress-form-wizard-col-lg-3 {
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
+    max-width: 25%;
+  }
+
+  .wordpress-form-wizard-col-lg-4 {
+    -ms-flex-preferred-size: 33.33333333%;
+    flex-basis: 33.33333333%;
+    max-width: 33.33333333%;
+  }
+
+  .wordpress-form-wizard-col-lg-5 {
+    -ms-flex-preferred-size: 41.66666667%;
+    flex-basis: 41.66666667%;
+    max-width: 41.66666667%;
+  }
+
+  .wordpress-form-wizard-col-lg-6 {
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+
+  .wordpress-form-wizard-col-lg-7 {
+    -ms-flex-preferred-size: 58.33333333%;
+    flex-basis: 58.33333333%;
+    max-width: 58.33333333%;
+  }
+
+  .wordpress-form-wizard-col-lg-8 {
+    -ms-flex-preferred-size: 66.66666667%;
+    flex-basis: 66.66666667%;
+    max-width: 66.66666667%;
+  }
+
+  .wordpress-form-wizard-col-lg-9 {
+    -ms-flex-preferred-size: 75%;
+    flex-basis: 75%;
+    max-width: 75%;
+  }
+
+  .wordpress-form-wizard-col-lg-10 {
+    -ms-flex-preferred-size: 83.33333333%;
+    flex-basis: 83.33333333%;
+    max-width: 83.33333333%;
+  }
+
+  .wordpress-form-wizard-col-lg-11 {
+    -ms-flex-preferred-size: 91.66666667%;
+    flex-basis: 91.66666667%;
+    max-width: 91.66666667%;
+  }
+
+  .wordpress-form-wizard-col-lg-12 {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+
+  .wordpress-form-wizard-col-lg-offset-0 {
+    margin-left: 0;
+  }
+
+  .wordpress-form-wizard-col-lg-offset-1 {
+    margin-left: 8.33333333%;
+  }
+
+  .wordpress-form-wizard-col-lg-offset-2 {
+    margin-left: 16.66666667%;
+  }
+
+  .wordpress-form-wizard-col-lg-offset-3 {
+    margin-left: 25%;
+  }
+
+  .wordpress-form-wizard-col-lg-offset-4 {
+    margin-left: 33.33333333%;
+  }
+
+  .wordpress-form-wizard-col-lg-offset-5 {
+    margin-left: 41.66666667%;
+  }
+
+  .wordpress-form-wizard-col-lg-offset-6 {
+    margin-left: 50%;
+  }
+
+  .wordpress-form-wizard-col-lg-offset-7 {
+    margin-left: 58.33333333%;
+  }
+
+  .wordpress-form-wizard-col-lg-offset-8 {
+    margin-left: 66.66666667%;
+  }
+
+  .wordpress-form-wizard-col-lg-offset-9 {
+    margin-left: 75%;
+  }
+
+  .wordpress-form-wizard-col-lg-offset-10 {
+    margin-left: 83.33333333%;
+  }
+
+  .wordpress-form-wizard-col-lg-offset-11 {
+    margin-left: 91.66666667%;
+  }
+
+  .wordpress-form-wizard-start-lg {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    text-align: start;
+  }
+
+  .wordpress-form-wizard-center-lg {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .wordpress-form-wizard-end-lg {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    text-align: end;
+  }
+
+  .wordpress-form-wizard-top-lg {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+  }
+
+  .wordpress-form-wizard-middle-lg {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .wordpress-form-wizard-bottom-lg {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+  }
+
+  .wordpress-form-wizard-around-lg {
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+  }
+
+  .wordpress-form-wizard-between-lg {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+
+  .wordpress-form-wizard-first-lg {
+    -webkit-box-ordinal-group: 0;
+    -ms-flex-order: -1;
+    order: -1;
+  }
+
+  .wordpress-form-wizard-last-lg {
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1;
+  }
+}
+
+
+/**************************************************
+ * Range Slider
+ *************************************************/
+.rangeslider,
+.rangeslider__fill {
+  display: block;
+  background-color: #eaeaea;
+  border-radius: 10px;
+}
+
+.rangeslider {
+  background: #e6e6e6;
+  position: relative;
+}
+
+.rangeslider--horizontal {
+  height: 20px;
+  width: 100%;
+}
+
+.rangeslider--vertical {
+  width: 20px;
+  min-height: 150px;
+  max-height: 100%;
+}
+
+.rangeslider--disabled {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+  opacity: 0.4;
+}
+
+.rangeslider__fill {
+  background: #651fff;
+  opacity: 0.8;
+  position: absolute;
+}
+.rangeslider--horizontal .rangeslider__fill {
+  top: 0;
+  height: 100%;
+}
+.rangeslider--vertical .rangeslider__fill {
+  bottom: 0;
+  width: 100%;
+}
+
+.rangeslider__handle {
+  background: white;
+  cursor: pointer;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  background: blue;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.rangeslider__handle:active, .rangeslider--active .rangeslider__handle {
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwLjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC4xMiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0.1)), color-stop(100%, rgba(0, 0, 0, 0.12)));
+  background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.12));
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.12));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.12));
+}
+.rangeslider--horizontal .rangeslider__handle {
+  top: -10px;
+  touch-action: pan-y;
+  -ms-touch-action: pan-y;
+}
+.rangeslider--vertical .rangeslider__handle {
+  left: -10px;
+  touch-action: pan-x;
+  -ms-touch-action: pan-x;
+}
+
+input[type="range"]:focus + .rangeslider .rangeslider__handle {
+  -moz-box-shadow: 0 0 8px rgba(255, 0, 255, 0.9);
+  -webkit-box-shadow: 0 0 8px rgba(255, 0, 255, 0.9);
+  box-shadow: 0 0 8px rgba(255, 0, 255, 0.9);
+}
+
+.wordpress-form-wizard-no-results {
+  text-align: center;
+}
+
+.wordpress-form-wizard-posts-post-im {
+  position: relative;
+}
+
+.wordpress-form-wizard-image-badge {
+    position: absolute;
+    top: 30px;
+    padding: 5px 10px;
+}
+
+
+.wordpress-form-wizard-posts-container {
+  position: relative;
+}
+
+.wordpress-form-wizard-posts-load-more-button {
+    position: absolute !important;
+    bottom: -10px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wordpress-form-wizard-submit-popup-container {
+    position: absolute;
+    background: #fff;
+    z-index: 99999;
+    padding: 30px 20px;
+    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.2);
+    left: 0;
+    right: 0;
+    border-radius: 15px;
+}
+
+.wordpress-form-wizard-submit-popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}

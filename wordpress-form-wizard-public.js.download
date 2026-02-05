@@ -1,0 +1,768 @@
+(function( $ ) {
+	'use strict';
+
+	// Create the defaults once
+	var pluginName = "weLaunchFormWizard",
+		defaults = {
+			store_locator: '#store_locator',
+		};
+
+	// The actual plugin constructor
+	function Plugin ( element, options ) {
+		this.element = element;
+		this.settings = $.extend( {}, defaults, options );
+		this._defaults = defaults;
+
+		this._name = pluginName;
+		this.init();
+	}
+
+	// Avoid Plugin.prototype conflicts
+	$.extend( Plugin.prototype, {
+		init: function() {
+
+			var that = this;
+
+			this.form = $(this.element);
+
+			this.window = $(window);
+			this.currentURL = window.location.href;
+			this.documentHeight = $( document ).height();
+			this.windowHeight = this.window.height();
+
+			this.currentStep;
+			this.nextStep;
+			this.previousStep;
+
+			this.choicesMade = {};
+
+			this.totalQuestions = 1;
+			this.totalSteps;
+
+			this.setDefaults();
+			this.stepMovements();
+			this.choiceMade();
+			this.sendMail();
+			this.rangeSlider();
+			if(this.settings.resultsLoadMore == "1") {
+				this.loadMore();
+			}
+			this.popup();
+		},
+		popup: function() {
+
+			var that = this;
+
+			that.form.on('click', '.wordpress-form-wizard-submit-popup-button', function(e) {
+				e.preventDefault();
+				that.form.find('.wordpress-form-wizard-submit-popup-container').show();
+			});
+
+			that.form.on('click', '.wordpress-form-wizard-submit-popup-close', function(e) {
+				e.preventDefault();
+				that.form.find('.wordpress-form-wizard-submit-popup-container').hide();
+			});
+
+		},
+		loadMore: function() {
+
+			var that = this;
+
+			that.form.on('click', '.wordpress-form-wizard-posts-load-more-button', function(e) {
+				e.preventDefault();
+				$(this).hide();
+				that.form.find('.wordpress-form-wizard-posts-post-container').parent().show();
+			})
+
+		},
+		setDefaults : function() {
+
+			this.formId = this.form.data('id');
+			this.formType = this.form.data('type');
+			this.showResultsAt = this.form.data('show-results-at');
+			this.currentStepIndex = 1;
+			this.priceCalculation = String( this.form.data('price-calculation') );
+			this.debug = false;
+			if(this.getParameterByName('debug') == "true") {
+				this.debug = true;
+			}
+
+			this.numberFomatter = new Intl.NumberFormat(
+				this.settings.numberFormatterLocale,
+				{ style: this.settings.numberFormatterStyle, currency: this.settings.numberFormatterCurrency }
+			);
+
+			if(this.formType == "price_calculation") {
+				this.calculatePrice();
+			}
+
+			this.totalSteps = this.form.find('.wordpress-form-wizard-step').length;
+
+			jQuery.ajax({
+				url: this.settings.ajax_url,
+				type: 'post',
+				dataType: 'JSON',
+				data: {
+					action: 'wordpress_form_wizard_analytics_view',
+					form_id: this.formId,
+					step_id: 0,
+				},
+				success : function( response ) {
+
+					if(response.status == 0) {
+						alert(response.message);
+						return false;
+					}						
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				    console.log('An Error Occured: ' + jqXHR.status + ' ' + errorThrown + '! Please contact System Administrator!');
+				}
+			});
+
+		},
+		sendMail : function() {
+
+			var that = this;
+			that.form.on('submit', function(e) {
+
+				e.preventDefault();
+
+				var $this = $(this);
+
+				var data = {
+					action : 'wordpress_form_wizard_send_mail',
+					form_id : that.formId,
+					choices_made : that.choicesMade,
+				};
+
+				that.form.find('.wordpress-form-wizard-submit-container input, .wordpress-form-wizard-submit-container textarea').each(function(i, index) {
+							
+					var $this = $(this);
+					var inputName = $this.attr('name');
+					var inputType = $this.attr('type');
+					if(inputType == "radio" || inputType == "checkbox") {
+
+						if($this.is(':checked')) {
+							var inputVal = $this.val();
+						} else {
+							return true;
+						}
+
+					} else {
+						var inputVal = $this.val();
+					}
+	
+					data[inputName] = inputVal;
+			
+				});
+
+				jQuery.ajax({
+					url: that.settings.ajax_url,
+					type: 'post',
+					dataType: 'JSON',
+					data: data,
+					beforeSend: function() {
+						that.form.find('.wordpress-form-wizard-submit-container').hide();
+						that.form.find('.wordpress-form-wizard-loading-container').show();
+					},
+					success : function( response ) {
+
+						that.form.find('.wordpress-form-wizard-submit-container').show();
+						that.form.find('.wordpress-form-wizard-loading-container').hide();
+
+						if(response.status == 0) {
+							alert(response.message);
+							return false;
+						}
+
+						$('.wordpress-form-wizard-step-description-final').hide();
+						// $('.wordpress-form-wizard-submit-container-popup').hide();
+						that.form.find('.wordpress-form-wizard-submit').html(response.message);
+
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					    console.log('An Error Occured: ' + jqXHR.status + ' ' + errorThrown + '! Please contact System Administrator!');
+					}
+				});
+
+				return false;
+			});
+
+		},
+		choiceMade : function() {
+
+			var that = this;
+			this.form.on('change', 'input, select', function(e) {
+				that.calculatePrice();	
+			});
+		},
+		stepMovements : function() {
+
+			var that = this;
+
+			this.form.on('click', '.wordpress-form-wizard-restart', function(e) {
+
+				e.preventDefault();
+
+				that.form.trigger('reset');
+				that.choicesMade = {};
+
+				that.currentStepIndex = 1;
+				that.previousStep = 1;
+
+				var currentStep = that.form.find('.wordpress-form-wizard-step-current').removeClass('wordpress-form-wizard-step-current').hide();
+				var firstStep = that.form.find('.wordpress-form-wizard-steps-container .wordpress-form-wizard-step').first().addClass('wordpress-form-wizard-step-current').show();	
+
+				that.form.find('.wordpress-form-wizard-next-step').show();
+				that.form.find('.wordpress-form-wizard-skip-step').show();
+				that.form.find('.wordpress-form-wizard-restart').hide();
+				that.progressBar();
+				
+			});
+
+			this.form.on('click', '.wordpress-form-wizard-next-step, .wordpress-form-wizard-skip-step', function(e) {
+
+				e.preventDefault();
+
+				var currentStep = that.form.find('.wordpress-form-wizard-step-current');
+				var nextStep = currentStep.next();
+
+				if(nextStep.length < 1) {
+					alert('Step not found.');
+				}
+
+				that.form.find('.wordpress-form-wizard-previous-step').show();
+				
+				var inputs = currentStep.find('input, select, textarea');
+				if(inputs.length > 0) {
+
+					var valid = true;
+					var firstRun = true;
+					$.each(inputs, function(i, index) {
+						
+						var $this = $(this);
+						var inputName = $this.attr('name').replace('[]', '');
+						var inputType = $this.attr('type');
+
+						if(inputType == "checkbox" && $this.prop('required')) {
+
+							if($('input[name="' + $this.attr('name') + '"]:checkbox:checked').length < 1) {
+								if(!this.checkValidity()) {
+									$(this).addClass('wordpress-form-wizard-error');
+									alert( this.validationMessage );
+									valid = false;
+									return valid;
+								}
+							}
+
+						} else {
+							if(!this.checkValidity()) {
+								$(this).addClass('wordpress-form-wizard-error');
+								alert( this.validationMessage );
+								valid = false;
+								return valid;
+							}
+						}
+
+						if(inputType == "radio" || inputType == "checkbox") {
+
+							if($this.is(':checked')) {
+								var inputVal = $this.val();
+							} else {
+								return true;
+							}
+
+						} else if(inputType == "range") {
+
+							if($this.val() == 0 && $this.prop('required')) {
+								alert('This is required');
+								valid = false;
+								return valid;
+							}
+							
+							var inputVal = $this.val();
+						}
+						else {
+							var inputVal = $this.val();
+						}
+						
+						// Reset duplicate answers in array from previous answered 
+						if(firstRun && that.choicesMade[inputName] !== undefined) {
+							delete(that.choicesMade[inputName]);
+						}
+						firstRun = false;
+
+						if(that.choicesMade[inputName] !== undefined) {
+							that.choicesMade[inputName].push(inputVal);
+						} else {
+							that.choicesMade[inputName] = [ inputVal ];	
+						}
+
+					});
+
+					if(!valid) {
+						return;
+					}
+				}
+
+   				var dependencyData = nextStep.data('dependency');
+   				if(dependencyData && dependencyData != "") {
+					var dependencyDataValid = false;
+					for (var dependencyDataValidInt = 1; dependencyDataValidInt <= 20; dependencyDataValidInt++) {
+		    	
+
+						if(!dependencyData || dependencyData == "") {
+							break;
+						}
+
+				    	dependencyDataValid = that.checkDependency(dependencyData);
+
+					    if (dependencyDataValid) {            
+					        break;
+					    } 
+					    nextStep = nextStep.next();
+					    dependencyData = nextStep.data('dependency');
+					}
+				}
+
+				that.currentStepIndex += 1;
+
+				that.form.find('.wordpress-form-wizard-previous-step').removeAttr('disabled');
+				that.previousStep = currentStep;
+
+				var lastStep = false;
+				if(nextStep.hasClass('wordpress-form-wizard-step-final')) {
+
+					that.form.find('.wordpress-form-wizard-next-step').hide();
+					that.form.find('.wordpress-form-wizard-skip-step').hide();
+					that.form.find('.wordpress-form-wizard-restart').show();
+					
+
+					lastStep = true;
+
+					if(that.formType == "guided_selling") {
+						that.getPosts();
+					}
+
+				} else if(that.showResultsAt != "" && that.currentStepIndex >= that.showResultsAt  ) {
+
+					$('.wordpress-form-wizard-step-final').show();
+					that.getPosts();
+				} else {
+					that.form.find('.wordpress-form-wizard-next-step').show();
+					that.form.find('.wordpress-form-wizard-skip-step').show();
+					that.form.find('.wordpress-form-wizard-restart').hide();
+				}	
+
+				var firstStep = false;
+				if(currentStep.hasClass('wordpress-form-wizard-step-first')) {
+					firstStep = true;
+				} else {
+
+					jQuery.ajax({
+						url: that.settings.ajax_url,
+						type: 'post',
+						dataType: 'JSON',
+						data: {
+							action: 'wordpress_form_wizard_analytics_complete',
+							form_id: that.formId,
+							step_id: currentStep.data('id'),
+							choices : that.choicesMade,
+						},
+						success : function( response ) {
+
+							if(response.status == 0) {
+								alert(response.message);
+								return false;
+							}						
+						},
+						error: function(jqXHR, textStatus, errorThrown) {
+						    console.log('An Error Occured: ' + jqXHR.status + ' ' + errorThrown + '! Please contact System Administrator!');
+						}
+					});
+				}
+
+				if(that.formType == "price_calculation") {
+					that.calculatePrice();
+				}
+
+				// Analyltics
+				jQuery.ajax({
+					url: that.settings.ajax_url,
+					type: 'post',
+					dataType: 'JSON',
+					data: {
+						action: 'wordpress_form_wizard_analytics_view',
+						form_id: that.formId,
+						step_id: nextStep.data('id'),
+						first_step : firstStep,
+						last_step: lastStep
+					},
+					success : function( response ) {
+
+						if(response.status == 0) {
+							alert(response.message);
+							return false;
+						}						
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					    console.log('An Error Occured: ' + jqXHR.status + ' ' + errorThrown + '! Please contact System Administrator!');
+					}
+				});
+
+				if(nextStep.find('input').prop('required')) {
+					that.form.find('.wordpress-form-wizard-skip-step').hide();
+				} else if(!lastStep) {
+					that.form.find('.wordpress-form-wizard-skip-step').show();
+				}
+
+				currentStep.removeClass('wordpress-form-wizard-step-current').hide();
+				nextStep.addClass('wordpress-form-wizard-step-current').show();
+				that.progressBar();
+
+				if(that.settings.scrollToTop == "1") {
+
+					var offset = parseInt(that.form.find(".wordpress-form-wizard-top-bar").offset().top) + parseInt(that.settings.scrollToTopOffset);
+					$([document.documentElement, document.body]).animate({
+					    scrollTop: offset
+					}, 500);
+				}
+
+			});
+
+			this.form.on('click', '.wordpress-form-wizard-previous-step', function(e) {
+				e.preventDefault();
+
+				var currentStep = that.form.find('.wordpress-form-wizard-step-current');
+				var previousStep = that.previousStep;
+
+				that.form.find('.wordpress-form-wizard-restart').hide();
+
+				var inputs = currentStep.find('input, select, textarea');
+				if(inputs.length > 0) {
+
+					$.each(inputs, function(i, index) {
+						
+						var $this = $(this);
+						console.log($this);
+						var inputName = $this.attr('name').replace('[]', '');
+						delete that.choicesMade[inputName];
+					});
+				}
+
+   				var dependencyData = previousStep.data('dependency');
+   				if(dependencyData && dependencyData != "") {
+					var dependencyDataValid = false;
+					for (var dependencyDataValidInt = 1; dependencyDataValidInt <= 20; dependencyDataValidInt++) {
+		    	
+
+						if(!dependencyData || dependencyData == "") {
+							break;
+						}
+
+				    	dependencyDataValid = that.checkDependency(dependencyData);
+
+					    if (dependencyDataValid) {            
+					        break;
+					    } 
+					    previousStep = previousStep.prev();
+					    dependencyData = previousStep.data('dependency');
+					}
+				}
+
+				if(previousStep.length < 1) {
+					alert('Step not found.');
+					return false;
+				}
+
+				that.currentStepIndex -= 1;
+
+				that.form.find('.wordpress-form-wizard-next-step').show();
+				that.form.find('.wordpress-form-wizard-skip-step').show();
+
+				if(previousStep.hasClass('wordpress-form-wizard-step-first')) {
+					that.form.find('.wordpress-form-wizard-previous-step').hide();
+				}
+
+				// Analyltics
+				jQuery.ajax({
+					url: that.settings.ajax_url,
+					type: 'post',
+					dataType: 'JSON',
+					data: {
+						action: 'wordpress_form_wizard_analytics_view',
+						form_id: that.formId,
+						step_id: previousStep.data('id'),
+					},
+					success : function( response ) {
+
+						if(response.status == 0) {
+							alert(response.message);
+							return false;
+						}						
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					    console.log('An Error Occured: ' + jqXHR.status + ' ' + errorThrown + '! Please contact System Administrator!');
+					}
+				});
+
+				that.previousStep = previousStep.prev();
+				currentStep.removeClass('wordpress-form-wizard-step-current').hide();
+				previousStep.addClass('wordpress-form-wizard-step-current').show();
+				that.progressBar();
+
+				if(that.settings.scrollToTop == "1") {
+					$([document.documentElement, document.body]).animate({
+					    scrollTop: that.form.find(".wordpress-form-wizard-top-bar").offset().top
+					}, 500);
+				}
+
+			});
+		},
+		calculatePrice : function() {
+
+			var that = this;
+			if(!that.priceCalculation) {
+				return;
+			}
+
+			var price = 0;
+			var scheme = that.priceCalculation.split(/[.\*+-/()_]/);
+			var priceCalculationTemp = that.priceCalculation;
+
+			if(that.debug) {
+				console.log(priceCalculationTemp);
+				console.log(scheme);
+			}
+
+			$.each(scheme, function(i, index) {
+
+				
+				var hasId = index.split('#');
+				if(hasId.length == 2) {
+
+					var questionId = hasId[1];
+
+					var input = $('.wordpress-form-wizard-step-' + questionId).find('input');
+					var inputType = input.attr('type');
+					var inputPrice = 0;
+
+					if(inputType == "radio") {
+						inputPrice = input.filter(':checked').data('price');
+					} else if(inputType == "checkbox") {
+						$.each(input.filter(':checked'), function(i, index) {
+							var inputPriceTemp = $(this).data('price');
+							if(inputPriceTemp && inputPriceTemp > 0) {
+								inputPrice += inputPriceTemp;
+							}
+						});
+					} else if(inputType == "range") {
+						inputPrice = input.data('price') * input.val();
+					} else {
+						inputPrice = input.data('price');
+					}
+
+					if(inputPrice > 0) {
+						priceCalculationTemp = priceCalculationTemp.replace('#' + questionId, inputPrice);
+					} else {
+
+						if(inputType == "range") {
+							priceCalculationTemp = priceCalculationTemp.replace('*#' + questionId, '*0');
+							priceCalculationTemp = priceCalculationTemp.replace('#' + questionId + '*', '0*');
+						} else {
+							priceCalculationTemp = priceCalculationTemp.replace('*#' + questionId + '*', '*1');
+							priceCalculationTemp = priceCalculationTemp.replace('#' + questionId + '*', '1*');
+						}
+
+						priceCalculationTemp = priceCalculationTemp.replace('/#' + questionId, '/1');
+						priceCalculationTemp = priceCalculationTemp.replace('+#' + questionId, '+0');
+						priceCalculationTemp = priceCalculationTemp.replace('-#' + questionId, '-0');
+						priceCalculationTemp = priceCalculationTemp.replace('#' + questionId, '0');
+					}
+				}
+			});
+
+			var qwet = eval(priceCalculationTemp);
+			if(that.debug) {
+				console.log(priceCalculationTemp);
+				console.log(qwet);
+			}
+			
+			if(qwet && qwet > 0) {
+
+				that.form.find('.wordpress-form-wizard-step-final .wordpress-form-wizard-step-final-price').html( that.numberFomatter.format( qwet.toFixed(2) ) );
+
+				that.form.find('.wordpress-form-wizard-step-final-price-hidden').val(qwet);
+
+				var priceField = that.form.find('.wordpress-form-wizard-price');
+
+				$({
+					Counter: priceField.data('price')
+				}).animate({
+					Counter: qwet
+				}, {
+					duration: 1500,
+					// easing: 'swing',
+				step: function(now) {
+				    priceField.data('price', now);
+				    priceField.text(that.numberFomatter.format(now.toFixed(2)));
+				}
+				// old
+				// step: function() {
+				// 	priceField.data('price', this.Counter);
+				// 	priceField.text(that.numberFomatter.format( Math.ceil( this.Counter ) ) );
+				// }
+				});
+			}
+
+		},
+		getPosts : function() {
+
+			var that = this;
+
+			jQuery.ajax({
+				url: that.settings.ajax_url,
+				type: 'post',
+				dataType: 'JSON',
+				data: {
+					action: 'wordpress_form_wizard_get_posts',
+					form_id: that.formId,	
+					choices_made : that.choicesMade
+				},
+				beforeSend: function() {
+					that.form.find('.wordpress-form-wizard-posts-container').html('');
+					that.form.find('.wordpress-form-wizard-loading-container').show();
+				},
+				success : function( response ) {
+
+					that.form.find('.wordpress-form-wizard-loading-container').hide();
+
+					if(response.status == 0) {
+						alert(response.message);
+						return false;
+					}
+
+					if( typeof(response.post_ids) == "object") {
+						response.post_ids = Object.values(response.post_ids);
+					}
+
+					that.form.find('.wordpress-form-wizard-posts-container').html(response.html);
+					that.form.find('.wordpress-form-wizard-step-final-post-ids-hidden').val(response.post_ids.join(','));
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				    console.log('An Error Occured: ' + jqXHR.status + ' ' + errorThrown + '! Please contact System Administrator!');
+				}
+			});
+		},
+		progressBar : function() {
+
+			var currentStep = this.form.find('.wordpress-form-wizard-step-current');
+			var nextSteps = currentStep.nextAll();
+			var previousSteps = currentStep.prevAll();
+
+			var nextStepsTotal = nextSteps.length;
+			var previousStepsTotal = previousSteps.length;
+
+			var progress = (1 - (nextStepsTotal / this.totalSteps)) * 100;
+
+			this.form.find('.wordpress-form-wizard-progress-bar').css('width', progress + '%');
+			this.form.previousStepsTotal = previousStepsTotal;
+		},
+		rangeSlider: function() {
+
+			$('.wordpress-form-wizard-rangeslider').rangeslider({
+				polyfill: false,
+			});
+
+			this.form.on('input', '.wordpress-form-wizard-rangeslider', function(e) {
+				var $this = $(this);
+
+				$this.parent().find('.wordpress-form-wizard-rangeslider-info-number').text($this.val());
+			});
+
+		},
+        getParameterByName: function(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)", "i"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        },
+	   	checkDependency : function(dependencyData) {
+
+	   		var that = this;
+
+	   		if(!dependencyData) { 
+	   			return false;
+	   		}
+
+   			// if anything not matches the depency questions -> SKIP (AND operator on question level)
+   			// if anything matches on answer level, set valid to true -> OR operator
+	   		var valid = false;
+	   		$.each(dependencyData, function(question, data) {
+				// question not answered
+				if(that.choicesMade[question] == undefined) {
+					valid = false;
+					return false;
+				} else {
+					
+					// var toCheck = String( that.choicesMade[dependencyData.question].choice_id );
+					// if(dependencyData.operator == "!=") {
+
+					// 	if(!dependencyData.values.includes(toCheck) ) {
+					// 		return true;
+					// 	}
+					// Intersection 
+					
+					var filteredArray = data.values.filter(function(n) {
+					    return that.choicesMade[question].indexOf(n) !== -1;
+					});
+
+					// No accordance
+					if(filteredArray.length == 0) {
+						valid = false;
+						return false;
+					// All answers the same (AND operator)
+					} else if( filteredArray.length == data.values.length ) {
+						valid = true;
+					// At least one answer
+					} else if ( filteredArray.length > 0) {
+						valid = true;
+					}
+				}
+	   		});
+				
+			return valid;
+
+	   	},
+	} );
+
+	// Constructor wrapper
+	$.fn[ pluginName ] = function( options ) {
+		return this.each( function() {
+			if ( !$.data( this, "plugin_" + pluginName ) ) {
+				$.data( this, "plugin_" +
+					pluginName, new Plugin( this, options ) );
+			}
+		} );
+	};
+
+	// $.fn.emulateTransitionEnd = function (duration) {
+	// 	var called = false
+	// 	var $el = this
+	// 	$(this).one('bsTransitionEnd', function () { called = true })
+	// 	var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+	// 	setTimeout(callback, duration)
+	// 	return this
+	// }
+
+	$(document).ready(function() {
+
+		$( ".wordpress-form-wizard" ).weLaunchFormWizard( 
+			form_wizard_options
+		);
+	} );
+
+})( jQuery );
